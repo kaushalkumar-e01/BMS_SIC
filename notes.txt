@@ -1,0 +1,88 @@
+->Data structure
+1)What are objects and which quatities are called objects?
+2)if data type of any value/variable is 'x' then data type of it's address is x*.
+
+
+->git commands
+
+configuration:
+	git config --global user.name "kaushalkumar-e01"
+	git config --global user.email "abcd@gmail.com"
+	
+copy(clone)
+	git clone https://.....(url of repo(anyboby public repo))
+the above command will connect to internet and copy the repo folder from the github(server) into our
+system(laptop). So we should be seeing a folder by the name of the repo
+
+->steps to create PAT:
+a. click on profile icon
+b. click settings
+c. then next page scroll down and click developer settings
+d. personal access token
+e. click token classic
+f. generate new token -> classic
+g. enter note and expiration
+h. check repo and fully scroll down 
+i. generate token  
+
+git clone https://PAT(what we generated)@github.com/username/repo_name
+
+->date:7/5/26
+
+
+
+->date:8/5/26
+*linear search->a)best case scenario is when element is found at very 1st position
+					->thus the best case efficiency(BCE) of linear search is O(1) Read it as: Big-Oh of One
+				b)worst case is when element is not found or at very last position
+					->worst case efficiency(WCE) would be O(n) where n is size of the list
+				c)if element found somwhere between the list then Average case efficiency would be O(n)
+*The solution for linear search is Brute Force Technique.
+	->Brute Force Technique is the technique that come usually naturally without having to apply any specific Math rule or formulea.Thus there is no inventor or author for these 
+	solutions
+				
+*Characteristics os Big-Oh:
+	1)it is used usually to find WCE. However, we can also find the other 2.
+	2)THe Big-Oh always depends on the i/p size and gives the efficiency in order of the i/p size, say 'n'
+	3) the Big-Oh is here to tell us the order in which the algorithm is. It's duty is not to give the exact efficiecy of the algorithm.
+	4)the Big-Oh gives efficiency in terms of 'n'
+	
+*Binary search:
+				->Strategy: Divide and conquer
+				->what it is used for: to search an element in a list (an array and not a linked list)
+				->pre-requisite: It expects the list to be sorted fully
+				->Solution:
+					Go to mid element of the list and check if it is the search 
+					If Yes, 
+						then the searchcan stopped
+					If not, 
+						then check if the element is less than the mid element
+						(i.e. if the element is in 1st half of the list)
+						if Yes,
+							then set the search area to 1st half of the list
+						if not,
+							set search area to 2nd half
+							
+					repeat the above steps until at least one element is left
+					
+				->pseducode:
+					do this:
+						mid_position = (1st position + last position)//2
+						if element == list[mid_position] then
+							stop the search and if you  wish, return mid_position
+						else
+							.......
+	
+*did push command from vs code also from source control and till now we have done push & pull from command prompt also
+
+*giving input from cmd (D:\nithin_learning\bms_may26>python binary_search.py 23 12 4 56 7 8 34 56 34 67 9)
+		UNDERSTANDING COMMAND LINE ARGUMENTS :
+			import sys
+
+			print(type(sys.argv))
+			print(sys.argv)
+			print(sys.argv[0])
+			print(sys.argv[1])
+			print(sys.argv[2])
+			print(type(sys.argv[2]))
+
