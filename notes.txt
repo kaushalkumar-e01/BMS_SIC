@@ -158,3 +158,225 @@ WCE O(n2)
 
 
 
+for i from 0 to n-2 do:
+	sorted = true  # assume the list is sorted
+	for j from 0 to n-2-i do:
+		if list[j] > list[j+1]:
+			swap list[j], list[j+1]
+			sorted = false
+	if sorted:
+		break
+
+BCE O(n)
+WCE O(n2)
+------------------------------------------------
+Insertion Sort:
+
+77   34   55   45    9   13   22   35   99
+34   77
+34   55   77
+34   45   55   77
+ 9   34   45   55   77
+ 9   13   22   34   35   45   55   77
+ 
+for i in range(n):
+	element = numbers[i]
+	j = i - 1
+	while j >= 0 and element < numbers[j]:
+		numbers[j+1] = numbers[j]
+		j -= 1
+	numbers[j+1] = element
+	
+9   13   22   34   35   45   55   77
+9   13   22   34   35
+
+BCE of Insertion sort is O(n)
+
+9   13   22   34   35   45   55   77
+9
+13   9
+22  13    9
+
+WCE of Insertion sort is O(n2)
+
+-----------------------------------------------
+SELECTION SORT:
+
+9   13   55   45    77   34   22   35   99
+
+element = 13
+index = 5
+
+ALGORITHM:
+	How the algorithm works
+	What strategy it uses
+	Write the algorithm
+	Psedocode
+	Check the flow (flow chart)
+	Code
+	Discuss Efficiencies
+	Optimization
+	Application (where to use and where and when not to use)
+	Industry use
+----------------------------------------------------
+Tisha went to her orchard and plucked a bunch of oranges. Now she wants to keep aside some of the oranges to for herself and her children but also sell the biggest ones on the market. She takes a look at the last orange in her hand and decides that she would like to eat it. She seems to think it fair that all the oranges smaller than the orange in her hand can go to her children. All the oranges bigger than this one will be sold on the market. Write a program to help Tisha do this partition. Assume the oranges are neatly stacked in a row.
+
+numbers = []
+pivot = numbers[-1]
+i = 0   # to access each element of the list
+j = 0 # to know/find the index of the pivot element
+
+for i in range(len(numbers)-1):
+	if numbers[i] < pivot:
+		numbers[i], numbers[j] = numbers[j] numbers[i]
+		j += 1
+numbers[-1], numbers[j] = numbers[j] numbers[-1]
+
+The Partition if partitions the array in 2 equal halves then the further number of calls to the partition algorithm would be lesser.
+
+Contrarily, if we are taking the worst case scenario (where we sorting the rray in opposite order) then the number of partitions would linearly grow/increase.
+
+Partition has already a fixed efficiency of O(n)
+The increase in call to the partition() would increase the effic of quick_sort() from Log(n) to 'n'
+
+Thus, the WCE of Quick sort is O(n²)
+------------------------------------------
+DAY7 13-05-2026 WEDNESDAY
+
+MERGE SORT:
+STRATEGY: Divide and Conquer
+
+DIVIDE STEP: Divide the given array recursively into smallest possible chunks of arrays
+
+CONQUER STEP: Merge the arrays RECURSIVELY and during the merge, compare and then add element from the arrays to be merged, say A and B into the merged array, say C.
+
+divide algorithm and merge algorithm
+
+77  34  55  45  9  13  22  35  99
+77  34  55  45       9  13  22  35  99
+77  34      55  45       9  13  22  35  99
+77      34      55  45       9  13  22  35  99
+77      34      55       45       9  13  22  35  99
+77      34      55       45       9  13      22  35  99
+77     34     55      45     9     13      22  35  99
+77     34     55      45     9     13      22      35  99
+77     34     55      45     9     13      22      35     99
+                                            
+
+34    77       45    55      9    13       22    35      99
+                                  
+
+34  45   55   77     9   13   22   35          99
+
+9   13    22   34   35   45    55   77       99
+i											  j
+
+9   13    22   34   35   45    55   77   99
+k
+
+BCE nlogn
+WCE nlogn
+
+stable sorting technique
+
+
+PSEUDOCODE:
+def divide_array(numbers, low, high):
+	if low < high:
+		mid = (low + high) // 2
+		divide_array(numbers, low, mid-1)
+		divide_array(numbers, mid+1, high)
+		merge(numbers[low:mid+1], numbers[mid+1:]) 
+
+def merge(array_a, array_b):
+	merged_array = []
+	i = j = 0
+	while i < len(array_a) and j < len(array_b):
+		if array_a[i] < array_b[j]:
+			merged_array.append(array_a[i])
+			i += 1
+		else:
+			merged_array.append(array_b[j])
+			j += 1
+	merged_array.extend(array_a[i:])
+	merged_array.extend(array_b[j:])
+
+with open(file_name, in_mode) as fp:
+	do the things here
+---------------------------------------------
+TREE
+* A Tree is non-linear DS
+* A Tree is acyclic DS
+* A Tree has one entry point namely ROOT
+* The data in a Tree is stored in its NODES
+* The Nodes in the tree are connected
+* The Root is also a Node
+* From a Node the nodes we can reach immediately (because they are connected, say, via an edge) are called as child nodes. A node in a tree can have any number of child nodes including zero.
+* A Node with zero child nodes is said to be LEAF Node or Brahmachari Node.
+* When we reach a child node from the current node, it is said to ASCEND the Tree once.
+* Since we have the terminology Child Node, the PARENT node is best possible term.
+* The Root is said to be at a level 1 and its immediate child at level 2 and so on.
+* The connected edges from the node we start ascending towards the node we have reached is said to be a PATH in the TREE.
+* Thus, level of the leaf node in a PATH is the HEIGHT of that Path in the Tree.
+*  The level of the leaf node in the longest path is the HEIGHT of the tree.
+* Synonym for Level is DEPTH.
+*** Height of a node in a tree is the height of the path from it to the leaf node.
+* All paths in the Tree are unique! Because the tree is acyclic(heirarchical).
+* If in Tree, every node have at most 2 child nodes then such a tree is said to be BINARY TREE (BT)
+* For a given BT of height N, the maximum number of nodes of the tree is (2 pow n) - 1  (Note that is an Odd number). Only the level 1 has odd number of nodes, which is the Root itself.
+* In a BT, if the number of nodes is exactly 2powN - 1, then it is said to be COMPLETE BT.
+* If in a BT, all the nodes have exactly 0 or 2 child nodes (only), then such BT is said to be STRICTLY BT.
+* Since in BT every node can have at most 2 nodes, we can name them as LEFT CHILD NODE and RIGHT CHILD NODE.
+* The Tree which ascends through (passes through) the left child node is said to be LEFT SUB TREE and thus we have RIGHT SUB TREE.
+*** If in a BT, the nodes are ARRANGED in such a way that the data in every node is greater than the data in its left child node and less than the data in its right child node, then such a BT is said to be BINARY SEARCH TREE (BST).
+* A BT or BST is said to be BALANCED, if the diffrence between the left sub tree height and the right sub tree height is nearly zero. In other words if the BT has nodes which is nearer to 2powN-1 then the BT is said be balanced.
+* In a BST if at all levels, the tree is balanced, then any of the CRUD operations (expect the delete) has an efficiency of O(LogN)
+* If in a BST if all nodes have only left child nodes or only right child nodes, then the efficiency of any of the CRUD operations is O(n) which is the worst case efficiency for a BST.
+* We can traverse a BSTR in 3 diffrent order.
+	1. Inorder traversal (LR'R): Access the left child then the root and lastly the right child. This must be recursively done with every new node we access.
+	2. Pre-Order (R'LR): Access the root then the left and lastly the right
+	3. PostOrder (LRR'): Left then right and lastly Root
+* If any of the 2 traversals are given, we can build the BST:
+	1. Inorder and pre-order
+	2. InOrder and PostOrder
+----------------------------------------------
+Linked List:
+Linear Linked lists:
+	1. Singly LL (straight chain, circular)
+	2. Doubly LL
+
+Problems we can solve on SLL/DLL:
+1. Sort the linked list (Bubble sort)
+2. Reverse a singly linked list (1. iteratively 2. recursively)
+3. Check if 2 linked lists converge at some point of time
+4. Merge 2 sorted linked lists into a one sorted list.
+5. Break a linked list into w of even and odd elements.
+6. Implement the following operations on a singly linked list:
+ 1. Insert at front
+ 2. insert at rear
+ 3. insert at position
+ 4. Delete from position
+ 5. Delete from front
+ 6. Delete from rear
+ 7. Traverse Singly linked list forward (front to towards rear)
+ 8. Diaplay nodes of Singly linked list backwards (rear to front)
+-----------------------------------------------------
+Operations on BST:
+
+Adding a new node:
+We always a new node as leaf node.
+
+Write Menu driven program to implement inserte, update and search and list elements of a BST.
+
+There are 2 types of relationships
+1. Generalisation (Inheritance)
+	is-a relationship or type-of relationship
+2. Association (we associate one object with other)
+	has-a or part-of relationship
+	Container containee relationship
+	1. Composition (strong association)
+	2. Aggreggation (weak association)
+-----------------------------------------------------
+SIC Training Test1 Link:
+
+https://forms.gle/RogbHDFHG1z5S7jn6
