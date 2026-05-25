@@ -24,15 +24,62 @@ def create_table():
         connection = connect_db()
         cursor = connection.cursor()
         count = cursor.execute(query)
-        if count== 0:
+        if count== 1:
             print('table created')
 
         else:
             print('table creation failed')
+        connection.commit()
         cursor.close()
         disconnect_db(connection)
 
     except:
         print('table creation failed')
 
-create_table()
+def create_person():
+    query = 'insert into people(name, gender, location, age) values(%s, %s, %s, %s);'
+
+    try:
+        person  = read_person()
+        connection = connect_db()
+        cursor = connection.cursor()
+        count = cursor.execute(query, person)
+        print(f"count={count}")
+        if count== 0:
+            print('person created')
+
+        else:
+            print('person creation failed')
+        cursor.close()
+        disconnect_db(connection)
+
+    except Exception as e:
+        print('person creation failed')
+        print(e.msg())
+
+def read_person():
+    name = input("enter person name: ")
+    age = int(input("enter person age: "))
+    gender = input("enter person gender (m/f): ")
+    location = input("enter person location: ")
+    if gender.lower() == 'f' :
+        gender = True
+    else:
+        gender = False
+
+    return (name, gender, location, age )
+
+
+def search_person():
+    pass
+
+def update_person():
+    pass
+
+def delete_person():
+    pass
+
+def list_people():
+    pass
+
+create_person()
