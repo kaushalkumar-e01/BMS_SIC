@@ -24,12 +24,12 @@ def create_table():
         connection = connect_db()
         cursor = connection.cursor()
         count = cursor.execute(query)
-        if count== 1:
+        if count== 0:
             print('table created')
 
         else:
             print('table creation failed')
-        connection.commit()
+        
         cursor.close()
         disconnect_db(connection)
 
@@ -45,11 +45,12 @@ def create_person():
         cursor = connection.cursor()
         count = cursor.execute(query, person)
         print(f"count={count}")
-        if count== 0:
+        if count== 1:
             print('person created')
 
         else:
             print('person creation failed')
+        connection.commit()
         cursor.close()
         disconnect_db(connection)
 
